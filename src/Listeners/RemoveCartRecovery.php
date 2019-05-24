@@ -29,9 +29,9 @@ class RemoveCartRecovery
     public function handle(OrderCreated $event)
     {
         if($event->order && !is_null($event->order->fields)) {
-            $field_values = json_decode($event->order->fields);
-            if(property_exists($field_values,'Email')){
-                $open_carts = CartRecovery::where('email',$field_values->Email)->where('complete',0)->get();
+            $field_values = $event->order->fields;
+            if(array_key_exists('Email',$field_values)){
+                $open_carts = CartRecovery::where('email',$field_values['Email'])->where('complete',0)->get();
                 foreach($open_carts as $cart){
                     if($cart->email_count == 0){
                         $cart->update(['complete' => 1,'normal' => 1]);

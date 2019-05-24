@@ -2,15 +2,10 @@
 
 namespace timramseyjr\CartRecovery\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RecoverCart extends Mailable implements ShouldQueue
+class RecoverCart extends Mailable
 {
-    use Queueable, SerializesModels;
-
     public $content, $app_name, $app_email, $subject;
     /**
      * Create a new message instance.

@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use timramseyjr\CartRecovery\Mail\RecoverCart;
 use timramseyjr\CartRecovery\Models\CartRecovery;
-use Swift_Mailer;
-use Swift_SmtpTransport as SmtpTransport;
 use timramseyjr\CartRecovery\Models\CartRecoveryEmail;
 
 class SendRecoveryEmails extends Command
@@ -36,11 +34,6 @@ class SendRecoveryEmails extends Command
     public function __construct()
     {
         parent::__construct();
-        $transport = new SmtpTransport('smtp.mailtrap.io', 2525);
-        $transport->setUsername('8d0bcbc0bf2ac6');
-        $transport->setPassword('afeb7c7db2edc9');
-        $mailtrap = new Swift_Mailer($transport);
-        Mail::setSwiftMailer($mailtrap);
     }
 
     /**

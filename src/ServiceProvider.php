@@ -37,7 +37,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             self::CONFIG_PATH,
             'cart-recovery'
         );
-
         $this->app->bind('cart-recovery', function () {
             return new CartRecovery();
         });
