@@ -1,0 +1,52 @@
+{
+  "name": "timramseyjr/cart-recovery",
+  "description": "Sends email to customer who abandons a cart",
+  "license": "",
+  "keywords": [
+    "cart",
+    "recovery"
+  ],
+  "type": "library",
+  "authors": [
+    {
+      "name": "Tim Ramsey",
+      "email": "tim@truelightdesigns.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "illuminate/support": ">=5.5.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "~3.8.0",
+    "phpunit/phpunit": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "timramseyjr\\CartRecovery\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "timramseyjr\\CartRecovery\\Tests\\": "tests"
+    },
+    "files": [
+      "vendor/phpunit/phpunit/src/Framework/Assert/Functions.php"
+    ]
+  },
+  "scripts": {
+    "phpunit": "phpunit"
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": [
+        "timramseyjr\\CartRecovery\\ServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}
