@@ -44,7 +44,6 @@ class SendRecoveryEmails extends Command
     public function handle()
     {
         $settings = Settings::where('module','cart_recovery')->get()->pluck('value','key');
-        $message_template = $settings['cart_recovery_email_template'];
         $email_name = $settings['cart_recovery_from_name'];
         $email_address = $settings['cart_recovery_from_email'];
         $subject = $settings['cart_recovery_email_subject'];
@@ -52,6 +51,7 @@ class SendRecoveryEmails extends Command
         $send_time = now()->subHours($add_time);
         $emails_to_send = CartRecovery::where('updated_at','<',$send_time)->where('complete',0)->get();
         foreach($emails_to_send as $customer){
+            $message_template = $settings['cart_recovery_email_template'];
             $data = [
                 'id' => $customer->id,
                 'name' => !empty($customer->name) ? $customer->name.',' : ''
