@@ -28,7 +28,7 @@ class CartRecoveryController extends BaseController{
     public function get(Request $request){
         if($request->has('id')){
             $cart = CartRecovery::find($request->input('id'));
-            return response()->json($cart->toArray(), 200);
+            return $cart->toArray();
             return $cart;
         }
     }

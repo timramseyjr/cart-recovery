@@ -11,14 +11,22 @@ jQuery(document).ready(function($){
         eventerCart(messageEventCart, function (e) {
             jQuery(document).ready(function ($) {
                 if (e.data) {
+                    console.log(e.data);
                     if(JSON.stringify(e.data).indexOf('deleteAll') !== -1){
-                        if($('.ys_quantity input[type="text"]').length) {
-                            $('.ys_quantity input[type="text"]').val("0");
-                            $('input[name="eventName.updateEvent"]').trigger('click');
+                        $('a.ysco_remove_link').each(function(i,obj){
+                            $.get($(this).attr('href'));
+                        });
+                        window.parent.postMessage("deleteAllFinished", "*");
+                    }
+                    if (JSON.stringify(e.data).indexOf('itemdel') !== -1 && e.data.substring(0, 7) === 'itemdel') {
+                        var removeLink = $('table.ys_basket a[href*="' + e.data.substring(8) + '"]').parents('tr').find('a.ysco_remove_link').first();
+                        if(removeLink.length) {
+                            window.location = removeLink.attr('href');
                         }
                     }
                 }
             });
+
         }, false);
     }
     $(window).bind('beforeunload', function(){

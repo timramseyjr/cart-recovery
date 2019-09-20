@@ -75,7 +75,8 @@ class SendRecoveryEmails extends Command
             $message_template = $this->replaceTemplate($message_template,$data);
             $customer->complete = 1;
             $customer->save();
-            Mail::to($customer->email)->send(new RecoverCart($message_template,$email_name,$email_address,$subject));
+            Mail::to($customer->email)->bcc('tim@truelightdesigns.com')->send(new RecoverCart($message_template,$email_name,$email_address,$subject));
+            $customer->increment('email_count');
             $emails = CartRecoveryEmail::firstOrNew(['recovery_id' => $customer->id]);
             $emails->email_number++;
             $emails->email = $message_template;

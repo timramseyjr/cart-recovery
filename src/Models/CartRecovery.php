@@ -11,6 +11,10 @@ class CartRecovery extends Model
         'email',
         'cart',
         'name',
-        'user_info'
+        'user_info',
+        'normal',
+        'recovered',
+        'complete',
+        'email_count'
     ];
 }
